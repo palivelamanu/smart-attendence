@@ -1,0 +1,48 @@
+
+<!doctype html>
+<html>
+<head>
+<title>Smart Attendance</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="container">
+<h1>Smart Attendance System</h1>
+<p class="subtitle">AI-assisted college attendance management</p>
+<div class="cards">
+<div class="card"><b>{{ students|length }}</b><span>Registered Students</span></div>
+<div class="card"><b>{{ present }}</b><span>Present Today</span></div>
+</div>
+
+<div class="nav">
+<a href="{{ url_for('camera') }}">📷 Start Attendance</a>
+<a href="{{ url_for('attendance') }}">📋 View Attendance</a>
+</div>
+
+<h2>Register Student</h2>
+<form method="post" action="{{ url_for('register') }}" enctype="multipart/form-data">
+<input name="roll_no" placeholder="Roll Number" required>
+<input name="name" placeholder="Student Name" required>
+<label>Clear face photo:
+<input type="file" name="photo" accept="image/*" required></label>
+<button type="submit">Register</button>
+</form>
+
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+<div class="message">{% for m in messages %}<p>{{ m }}</p>{% endfor %}</div>
+{% endif %}
+{% endwith %}
+
+<h2>Registered Students</h2>
+<table>
+<tr><th>Roll No</th><th>Name</th></tr>
+{% for s in students %}
+<tr><td>{{ s.roll_no }}</td><td>{{ s.name }}</td></tr>
+{% else %}
+<tr><td colspan="2">No students registered yet.</td></tr>
+{% endfor %}
+</table>
+</div>
+</body>
+</html>

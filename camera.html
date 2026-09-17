@@ -1,0 +1,18 @@
+
+<!doctype html>
+<html>
+<head>
+<title>Mark Attendance</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="container">
+<h1>Live Smart Attendance</h1>
+<p>Allow camera access. Look at the camera clearly.</p>
+<img class="camera" src="{{ url_for('video') }}">
+<br>
+<a class="button" href="{{ url_for('attendance') }}">View Attendance</a>
+<a class="button" href="{{ url_for('index') }}">Home</a>
+</div>
+</body>
+</html>

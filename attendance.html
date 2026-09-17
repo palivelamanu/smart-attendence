@@ -1,0 +1,22 @@
+
+<!doctype html>
+<html>
+<head>
+<title>Attendance Report</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="container">
+<h1>Attendance Report</h1>
+<a class="button" href="{{ url_for('index') }}">Home</a>
+<table>
+<tr><th>Date</th><th>Time</th><th>Roll No</th><th>Name</th></tr>
+{% for r in rows %}
+<tr><td>{{ r.date }}</td><td>{{ r.time }}</td><td>{{ r.roll_no }}</td><td>{{ r.name }}</td></tr>
+{% else %}
+<tr><td colspan="4">No attendance records yet.</td></tr>
+{% endfor %}
+</table>
+</div>
+</body>
+</html>
